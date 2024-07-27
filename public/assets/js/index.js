@@ -25,7 +25,7 @@ const hide = (elem) => {
   elem.style.display = 'none';
 };
 
-// activeNote is used to keep track of the note in the textarea
+// ActiveNote is used to keep track of the note in the textarea
 let activeNote = {};
 
 const getNotes = () =>
@@ -176,7 +176,7 @@ const renderNoteList = async (notes) => {
     noteListItems.push(li);
   });
 
-  if (window.location.pathname === '/notes') {
+  if (window.location.pathname === '/notes' || '/notes.html') {
     noteListItems.forEach((note) => noteList[0].append(note));
   }
 };
