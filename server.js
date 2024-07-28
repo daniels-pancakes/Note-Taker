@@ -79,7 +79,7 @@ app.delete('/api/notes/:id', (req, res) => {
                 `Note ID: ${id} deleted.`
             ))
 // I discovered you must have the response handling or the deletion will not work properly.
-    res.status(201).json({ message: 'Note deleted. Congrats.' });
+    res.status(201).json({ message: 'Note deleted.' });
 });
 
 
