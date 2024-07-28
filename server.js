@@ -2,7 +2,10 @@ const express = require('express');
 const path = require('path');
 const fs = require('fs');
 
+let uuid;
+
 const db = require('./db/db.json');
+console.log(db);
 
 const PORT = 3001;
 
@@ -36,8 +39,8 @@ app.post('/api/notes', (req, res) => {
         const newNote = {
             title,
             text,
+            id: genID(),
         };
-
     db.push(newNote);
     noteString = JSON.stringify(db);
 
@@ -58,6 +61,34 @@ app.post('/api/notes', (req, res) => {
     res.status(500).json('Error in posting note');
     }
 });
+
+app.delete('/api/notes/:id', (req, res) => {
+
+// req.params.id is a handy way for us to pull the id
+// Note the conversion into an integer here. This was necessary.
+    let id = Number(req.params.id);
+    let index = db.findIndex(note => note.id === id);
+    dbB4 = JSON.stringify(db);
+    db.splice(index, 1);
+    updateDB = JSON.stringify(db);
+
+    fs.writeFile('./db/db.json', updateDB, (err) =>
+        err
+            ? console.error(err)
+            : console.info(
+                `Note ID: ${id} deleted.`
+            ))
+// I discovered you must have the response handling or the deletion will not work properly.
+    res.status(201).json({ message: 'Note deleted. Congrats.' });
+});
+
+
+const genID = function() { 
+    do {
+        uuid = Math.floor(Math.random() * 9999);
+    } while (db.some(note => db.uuid === uuid));
+    return uuid;
+};
 
 // The wildcard handler must be called after the API handlers
 // Or else our server script will not work properly.
