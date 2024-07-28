@@ -20,7 +20,7 @@ As this web application will be deployed to be accessed online, it will require 
 Preview screenshot of Web Application ![Preview](./public/assets/media/preview.png)
 
 ## Usage Information
-The web application can be accesed at https://daniels-pancakes.github.io/Note-Taker/ as of deployment of this project.
+The web application can be accessed [at this link](https://note-taker-sacb.onrender.com/)as of deployment of this project.
 
 ## License
 This project is licensed under The Unlicense License. For more details visit [The License Webpage](http://unlicense.org/)
